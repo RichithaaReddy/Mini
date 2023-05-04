@@ -8,12 +8,12 @@ const Home = () => {
   return (
     <div className='min-h-screen'>
        <div className="bg-gray-100 px-5">
-      <div className="flex flex-auto py-12 px-3 md:px-8">
-        <div className=" mx-3">
+      <div className="flex  py-12 px-3 md:px-8">
+        <div className="mx-3">
           <h1 className="text-3xl font-bold mb-6 text-left">With Placify, get ready for your dream job.</h1>
           <p className="text-xl text-gray-800 mb-8 text-left">Prepare for your Placements and land your ideal job with the help of Placify,a platform that promises to make it easy for students to practise examinations by giving test patterns for various organisations and mock tests so that students have access to test patterns and take tests online while also allowing colleges to clearly observe student performance.</p>
           <div className="flex items-center">
-            <div className="flex items-center mr-4">
+            <div className="flex mr-4">
               <div className="rounded-full bg-violet-700 p-4 mr-4"><HiOutlineUserGroup className="text-white text-2xl" /></div>
               <div className="text-2xl font-bold"> Students</div>
             </div>

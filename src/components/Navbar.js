@@ -13,15 +13,15 @@ const Navbar = () => {
       <div className="m-auto">
         <ul className="flex">
           <li className="ml-4">
-            <Link to="/" className="text-cyan-700 hover:text-cyan-800">
-              Home
-            </Link>
-          </li>
-          {/* <li className="ml-4">
             <Link to="/About" className="text-cyan-700 hover:text-cyan-800">
               About
             </Link>
-          </li> */}
+          </li>
+          <li className="ml-4">
+            <Link to="/Testpatterns" className="text-cyan-700 hover:text-cyan-800">
+              Test patterns
+            </Link>
+          </li>
           {/* <li className="ml-4">
             <Link to="/Login" className="text-cyan-700 hover:text-cyan-800">
               Contact us

@@ -4,11 +4,20 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 export default function Signup() {
   const navigate = useNavigate();
+  const send = ()=>{
+    navigate('/login')
+  }
   const [user, setUser] = useState({
     name: "",
     email: "",
     password: "",
     cpassword: "",
+    phone:"",
+    college: {
+      name: "",
+      specialisation:""
+    },
+    
   });
   let name, value;
   const handleInput = (e) => {
@@ -39,7 +48,18 @@ export default function Signup() {
     //   console.log("Registration Success")
     //   navigate.push("/Login")
     // }
-    const status = axios.post("http://localhost:5000/register",user).then((res)=>{console.log(res)})
+    const status = axios.post("http://localhost:5000/register",user).then((res)=>{
+      if(res.data.message === "user registered sucessfully"){
+        window.alert("Registration Success")
+        console.log("Registration Success") 
+       send()
+      }
+      else if(res.data.message === "Email exists"){
+        window.alert("Email already exists")
+      }
+      
+      
+  })
     .catch((err)=>{
       console.log(err)
     })
@@ -64,7 +84,7 @@ export default function Signup() {
           <form method="POST" className="mt-6">
             <div className="mb-2">
               <label
-                htmlFor="name"
+               for="name"
                 className="block text-sm font-semibold text-gray-800"
               >
                 Name
@@ -81,7 +101,7 @@ export default function Signup() {
             </div>
             <div className="mb-2">
               <label
-                htmlFor="email"
+                for="email"
                 className="block text-sm font-semibold text-gray-800"
               >
                 Email
@@ -98,7 +118,7 @@ export default function Signup() {
             </div>
             <div className="mb-2">
               <label
-                htmlFor="password"
+                for="password"
                 className="block text-sm font-semibold text-gray-800"
               >
                 Password
@@ -115,7 +135,7 @@ export default function Signup() {
             </div>
             <div className="mb-2">
               <label
-                htmlFor="cpassword"
+                for="cpassword"
                 className="block text-sm font-semibold text-gray-800"
               >
                 Confirm Password

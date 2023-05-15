@@ -5,8 +5,11 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const navigate = useNavigate();
   const send = () => {
-    navigate("/testpatterns");
+    navigate('/testpatterns');
   };
+  const adminsend = () => {
+    navigate('/admindashboard');
+  }
   const [msg,setMsg] = useState('')
   const [user, setUser] = useState({
     email: "",
@@ -22,15 +25,27 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(user);
+    if(user.email==="admin@placify.com" && user.password ==="admin@123")
+    {
+       adminsend();
+    }
 
     const status = axios
       .post("http://localhost:5000/login", user)
       .then((res) => {
-        if (res.data.message === "login successfull") {
-          send();
-        } else if (res.message === 'Request failed with status code 400') {
-          window.alert("Invalid credentials");
-          setMsg("invalid credentials")
+        console.log(res)
+       if(res.data.status === "Invalid credentials")
+        {
+           window.alert("Invalid Credentials");
+        }
+        else if(window.data.status === "enter all fields")
+        {
+            window.alert("Enter all fields");
+        }
+        else 
+        {
+           localStorage.setItem("token",res.data.status);
+           send();
         }
       });
   };

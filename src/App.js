@@ -28,7 +28,7 @@ function App() {
           <Route path="/testpatterns" element={<Testpatterns />} />
           <Route path="/admin/testpatternsadd" element={<TestPatternAdd />} />
           <Route path="/admin/testpatternsdisplay" element={<TestPatternsDisplay />} />
-          <Route path="/testpatternsdisplay/:id" element={<Company />} />
+          <Route path="/admin/testpatternsdisplay/:id" element={<Company />} />
 
           <Route path="*" element={<Errorpage />} />
 

@@ -66,7 +66,7 @@ const TestPatternsDisplay = () => {
         {companies.map((company) => {
           return (
             <Link
-              href={`/dashboard/student/testpatterns/${company.companyname}`}
+              to={`/admin/testpatternsdisplay/${company.companyname}`}
             >
               <div className="mx-5 my-3 rounded shadow-md py-4 flex flex-col justify-between cursor-pointer">
                 <div className="bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:aspect-none">

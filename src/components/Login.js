@@ -26,9 +26,16 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(user);
-    if(user.email==="admin@placify.com" && user.password ==="admin@123")
+    if(user.email==="admin@placify.com")
     {
-       adminsend();
+      if(user.password === "admin@123")
+      {
+        adminsend();
+      }
+      else 
+      {
+        window.alert("Hey Admin entered password is wrong...");
+      }
     }
 
     const status = axios

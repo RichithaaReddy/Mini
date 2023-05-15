@@ -13,6 +13,7 @@ import TestPatternsDisplay from "./components/TestPatternsDisplay";
 import Company from "./components/Company";
 import About from "./components/About";
 import AdminDashboard from "./components/AdminDashboard";
+import StudentDashboard from "./components/StudentDashboard";
 function App() {
   return (
     <div className="App">
@@ -25,6 +26,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/admindashboard" element={<AdminDashboard />} />
+          <Route path="/studentdashboard" element={<StudentDashboard />} />
           <Route path="/testpatterns" element={<Testpatterns />} />
           <Route path="/testpatternsadd" element={<TestPatternAdd />} />
           <Route path="/testpatternsdisplay" element={<TestPatternsDisplay />} />

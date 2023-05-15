@@ -1,7 +1,9 @@
 import React, {useEffect,useState} from 'react'
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 const TestPatternsDisplay = () => {
+  const navigate = useNavigate();
     const [companies,setcompanies] = useState([]);
     useEffect(()=>{
         const status = axios.get("http://localhost:5000/testpatternsdisplay").then((res)=>{
@@ -11,6 +13,10 @@ const TestPatternsDisplay = () => {
             console.log(err);
         })
     },[])
+    const logout = () => {
+      localStorage.removeItem("admin");
+     navigate("/");
+   }
   return (
     <div>  
        <nav className="bg-white sticky flex justify-between items-center h-12 md:h-16">
@@ -23,35 +29,18 @@ const TestPatternsDisplay = () => {
       <div className="m-auto">
         <ul className="flex">
         <li className="ml-4">
-            <Link to="/Dashboard" className="text-cyan-700 hover:text-cyan-800">
+            <Link to="/admin/dashboard" className="text-cyan-700 hover:text-cyan-800">
               Dashboard
             </Link>
           </li>
           <li className="ml-4">
-            <Link to="/About" className="text-cyan-700 hover:text-cyan-800">
-              About
-            </Link>
-          </li>
-          <li className="ml-4">
-            <Link to="/Testpatterns" className="text-cyan-700 hover:text-cyan-800">
+            <Link to="/admin/testpatternsdisplay" className="text-cyan-700 hover:text-cyan-800">
               Test patterns
             </Link>
           </li>
-          {/* <li className="ml-4">
-            <Link to="/Login" className="text-cyan-700 hover:text-cyan-800">
-              Contact us
-            </Link>
-          </li> */}
-          <li className="ml-4">
-            <Link to="/Login" className="text-cyan-700 hover:text-cyan-800">
-              Logout
-            </Link>
-          </li>
-          {/* <li className="ml-4">
-            <Link to="/Signup" className="text-cyan-700 hover:text-cyan-800">
-              Signup
-            </Link>
-          </li> */}
+          <li className="ml-4 text-cyan-700 hover:text-cyan-800">
+              <a onClick={logout}>Logout</a>
+            </li>
          
         </ul>
       </div>
@@ -65,9 +54,10 @@ const TestPatternsDisplay = () => {
     <span className="text-3xl font-bold ml-5 absolute left-8  ">
       Test Patterns
     </span>
+    <Link to="/admin/testpatternsadd">
     <button className="text-xl mr-5 absolute right-16 bg-blue-500 p-3 rounded-md text-center font-semibold">
       Add Company
-    </button>
+    </button></Link>
     </div>
     <br />
     <br />
@@ -76,7 +66,7 @@ const TestPatternsDisplay = () => {
         {companies.map((company) => {
           return (
             <Link
-              href={`/dashboard/student/testpatterns/${company.companyname}`}
+              to={`/admin/testpatternsdisplay/${company.companyname}`}
             >
               <div className="mx-5 my-3 rounded shadow-md py-4 flex flex-col justify-between cursor-pointer">
                 <div className="bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:aspect-none">

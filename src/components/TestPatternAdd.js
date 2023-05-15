@@ -1,7 +1,8 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer,useEffect} from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const formReducer = (state, event) => {
   return {
     ...state,
@@ -10,6 +11,7 @@ const formReducer = (state, event) => {
 };
 
 const TestPatternAdd = () => {
+  const navigate = useNavigate();
   const [count, setcount] = useState(1);
   const [formData, setformData] = useReducer(formReducer, {});
   const [section, setsection] = useState("");
@@ -19,10 +21,18 @@ const TestPatternAdd = () => {
   const [duration, setduration] = useState("");
   const [totalsections, settotalsections] = useState([]);
 
+  useEffect(()=>{
+    if(!localStorage.getItem('admin')){
+        navigate('/Login')
+    }
+
+},[])
+
   const postData = async (url, data) => {
     const response = await axios.post(url, data);
     return response.data;
   };
+
 
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -86,6 +96,10 @@ const TestPatternAdd = () => {
     swal(formData.companyname + "  Details Added Successfully");
     //push("/dashboard/admin/testpatterns");
   };
+  const logout = () => {
+    localStorage.removeItem("admin");
+   navigate("/");
+ }
 
   const handleSection = (e) => {
     e.preventDefault();
@@ -118,35 +132,18 @@ const TestPatternAdd = () => {
       <div className="m-auto">
         <ul className="flex">
         <li className="ml-4">
-            <Link to="/Dashboard" className="text-cyan-700 hover:text-cyan-800">
+            <Link to="/admin/dashboard" className="text-cyan-700 hover:text-cyan-800">
               Dashboard
             </Link>
           </li>
           <li className="ml-4">
-            <Link to="/About" className="text-cyan-700 hover:text-cyan-800">
-              About
-            </Link>
-          </li>
-          <li className="ml-4">
-            <Link to="/Testpatterns" className="text-cyan-700 hover:text-cyan-800">
+            <Link to="/admin/testpatternsdisplay" className="text-cyan-700 hover:text-cyan-800">
               Test patterns
             </Link>
           </li>
-          {/* <li className="ml-4">
-            <Link to="/Login" className="text-cyan-700 hover:text-cyan-800">
-              Contact us
-            </Link>
-          </li> */}
-          <li className="ml-4">
-            <Link to="/Login" className="text-cyan-700 hover:text-cyan-800">
-              Logout
-            </Link>
-          </li>
-          {/* <li className="ml-4">
-            <Link to="/Signup" className="text-cyan-700 hover:text-cyan-800">
-              Signup
-            </Link>
-          </li> */}
+          <li className="ml-4 text-cyan-700 hover:text-cyan-800">
+              <a onClick={logout}>Logout</a>
+            </li>
          
         </ul>
       </div>

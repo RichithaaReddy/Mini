@@ -24,10 +24,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/admindashboard" element={<AdminDashboard />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/testpatterns" element={<Testpatterns />} />
-          <Route path="/testpatternsadd" element={<TestPatternAdd />} />
-          <Route path="/testpatternsdisplay" element={<TestPatternsDisplay />} />
+          <Route path="/admin/testpatternsadd" element={<TestPatternAdd />} />
+          <Route path="/admin/testpatternsdisplay" element={<TestPatternsDisplay />} />
           <Route path="/testpatternsdisplay/:id" element={<Company />} />
 
           <Route path="*" element={<Errorpage />} />

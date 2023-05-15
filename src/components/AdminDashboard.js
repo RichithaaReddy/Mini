@@ -1,7 +1,19 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const AdminDashboard = () => {
-   
+  const navigate = useNavigate();
+  const logout = () => {
+     localStorage.removeItem("admin");
+    navigate("/");
+  }
+  useEffect(()=>{
+    if(!localStorage.getItem('admin')){
+        navigate('/Login')
+    }
+
+},[])
+
     
   return (
     <div>
@@ -16,20 +28,15 @@ const AdminDashboard = () => {
           <ul className="flex">
             <li className="ml-4">
               <Link
-                to="/AdminDashboard"
+                to="/admin/dashboard"
                 className="text-cyan-700 hover:text-cyan-800"
               >
                 Dashboard
               </Link>
             </li>
             <li className="ml-4">
-              <Link to="/About" className="text-cyan-700 hover:text-cyan-800">
-                About
-              </Link>
-            </li>
-            <li className="ml-4">
               <Link
-                to="/TestPatternsDisplay"
+                to="/admin/testpatternsdisplay"
                 className="text-cyan-700 hover:text-cyan-800"
               >
                 Test patterns
@@ -40,10 +47,8 @@ const AdminDashboard = () => {
               Contact us
             </Link>
           </li> */}
-            <li className="ml-4">
-              <Link to="/Login" className="text-cyan-700 hover:text-cyan-800">
-                Logout
-              </Link>
+            <li className="ml-4 text-cyan-700 hover:text-cyan-800">
+              <a onClick={logout}>Logout</a>
             </li>
             {/* <li className="ml-4">
             <Link to="/Signup" className="text-cyan-700 hover:text-cyan-800">

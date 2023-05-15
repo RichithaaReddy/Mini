@@ -8,7 +8,8 @@ export default function Login() {
     navigate('/testpatterns');
   };
   const adminsend = () => {
-    navigate('/admindashboard');
+    navigate('/admin/dashboard');
+    localStorage.setItem("admin","789654jdvbjhfbhsfvdjzsfvsjzvfhjzvfszh");
   }
   const [msg,setMsg] = useState('')
   const [user, setUser] = useState({
@@ -38,7 +39,7 @@ export default function Login() {
         {
            window.alert("Invalid Credentials");
         }
-        else if(window.data.status === "enter all fields")
+        else if(res.data.status === "enter all fields")
         {
             window.alert("Enter all fields");
         }

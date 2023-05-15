@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from "react-router-dom"
 const Testpatterns = () => {
     const products = [
         {
@@ -69,6 +69,49 @@ const Testpatterns = () => {
       ];
   return (
     <div>
+       <nav className="bg-white sticky flex justify-between items-center h-12 md:h-16">
+      <Link
+        to="/"
+        className="text-blue-800 tracking-wider md:text-2xl font-bold  ml-8 font-mono"
+      >
+        PLACIFY
+      </Link>
+      <div className="m-auto">
+        <ul className="flex">
+        <li className="ml-4">
+            <Link to="/Dashboard" className="text-cyan-700 hover:text-cyan-800">
+              Dashboard
+            </Link>
+          </li>
+          <li className="ml-4">
+            <Link to="/About" className="text-cyan-700 hover:text-cyan-800">
+              About
+            </Link>
+          </li>
+          <li className="ml-4">
+            <Link to="/Testpatterns" className="text-cyan-700 hover:text-cyan-800">
+              Test patterns
+            </Link>
+          </li>
+          {/* <li className="ml-4">
+            <Link to="/Login" className="text-cyan-700 hover:text-cyan-800">
+              Contact us
+            </Link>
+          </li> */}
+          <li className="ml-4">
+            <Link to="/Login" className="text-cyan-700 hover:text-cyan-800">
+              Logout
+            </Link>
+          </li>
+          {/* <li className="ml-4">
+            <Link to="/Signup" className="text-cyan-700 hover:text-cyan-800">
+              Signup
+            </Link>
+          </li> */}
+         
+        </ul>
+      </div>
+    </nav>
          <div class=" mt-10 w-full">
           <br />
           <br />

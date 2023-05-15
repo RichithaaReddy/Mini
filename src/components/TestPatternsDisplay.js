@@ -12,14 +12,63 @@ const TestPatternsDisplay = () => {
         })
     },[])
   return (
-    <div>  <div class=" mt-10 w-full">
+    <div>  
+       <nav className="bg-white sticky flex justify-between items-center h-12 md:h-16">
+      <Link
+        to="/"
+        className="text-blue-800 tracking-wider md:text-2xl font-bold  ml-8 font-mono"
+      >
+        PLACIFY
+      </Link>
+      <div className="m-auto">
+        <ul className="flex">
+        <li className="ml-4">
+            <Link to="/Dashboard" className="text-cyan-700 hover:text-cyan-800">
+              Dashboard
+            </Link>
+          </li>
+          <li className="ml-4">
+            <Link to="/About" className="text-cyan-700 hover:text-cyan-800">
+              About
+            </Link>
+          </li>
+          <li className="ml-4">
+            <Link to="/Testpatterns" className="text-cyan-700 hover:text-cyan-800">
+              Test patterns
+            </Link>
+          </li>
+          {/* <li className="ml-4">
+            <Link to="/Login" className="text-cyan-700 hover:text-cyan-800">
+              Contact us
+            </Link>
+          </li> */}
+          <li className="ml-4">
+            <Link to="/Login" className="text-cyan-700 hover:text-cyan-800">
+              Logout
+            </Link>
+          </li>
+          {/* <li className="ml-4">
+            <Link to="/Signup" className="text-cyan-700 hover:text-cyan-800">
+              Signup
+            </Link>
+          </li> */}
+         
+        </ul>
+      </div>
+    </nav>
+      <div class=" mt-10 w-full">
     <br />
     <br />
     <br />
     <br />
-    <h1 className="text-3xl text-center font-semibold">
+    <div className='realtive'>
+    <span className="text-3xl font-bold ml-5 absolute left-8  ">
       Test Patterns
-    </h1>
+    </span>
+    <button className="text-xl mr-5 absolute right-16 bg-blue-500 p-3 rounded-md text-center font-semibold">
+      Add Company
+    </button>
+    </div>
     <br />
     <br />
     <div className="flex justify-center">

@@ -12,6 +12,7 @@ import TestPatternAdd from "./components/TestPatternAdd";
 import TestPatternsDisplay from "./components/TestPatternsDisplay";
 import Company from "./components/Company";
 import About from "./components/About";
+import CompanyStudent from './components/CompanyStudent';
 import AdminDashboard from "./components/AdminDashboard";
 import StudentDashboard from "./components/StudentDashboard";
 import MockTestVerbal from "./components/MockTestVerbal";
@@ -31,11 +32,11 @@ function App() {
           <Route path="/mocktestverbal" element={<MockTestVerbal />} />
           <Route path="/mocktestquant" element={<MockTestQuant />} />
           <Route path="/mocktesttech" element={<MockTestTech />} />
-
+          <Route path="/dashboard/student/testpatterns/:id" element={<CompanyStudent />} />
           <Route path="/mocktestverbal" element={<MockTestVerbal />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/studentdashboard" element={<StudentDashboard />} />
-          <Route path="/testpatterns" element={<Testpatterns />} />
+          <Route path="/dashboard/student" element={<StudentDashboard />} />
+          <Route path="/dashboard/student/testpatterns" element={<Testpatterns />} />
           <Route path="/admin/testpatternsadd" element={<TestPatternAdd />} />
           <Route path="/admin/testpatternsdisplay" element={<TestPatternsDisplay />} />
           <Route path="/admin/testpatternsdisplay/:id" element={<Company />} />

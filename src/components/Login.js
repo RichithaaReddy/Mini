@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const navigate = useNavigate();
   const send = () => {
-    navigate('/testpatterns');
+    navigate('/dashboard/student');
   };
   const adminsend = () => {
     navigate('/admin/dashboard');
@@ -85,7 +85,7 @@ export default function Login() {
             </Link>
           </li>
           <li className="ml-4">
-            <Link to="/Testpatterns" className="text-cyan-700 hover:text-cyan-800">
+            <Link to="/dashboard/student/testpatterns" className="text-cyan-700 hover:text-cyan-800">
               Test patterns
             </Link>
           </li>

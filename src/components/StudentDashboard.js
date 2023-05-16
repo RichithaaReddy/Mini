@@ -16,7 +16,7 @@ const StudentDashboard = () => {
           <ul className="flex">
             <li className="ml-4">
               <Link
-                to="/AdminDashboard"
+                to="/dashboard/student"
                 className="text-cyan-700 hover:text-cyan-800"
               >
                 Dashboard
@@ -29,7 +29,7 @@ const StudentDashboard = () => {
             </li>
             <li className="ml-4">
               <Link
-                to="/TestPatternsDisplay"
+                to="/dashboard/student/testpatterns"
                 className="text-cyan-700 hover:text-cyan-800"
               >
                 Test patterns

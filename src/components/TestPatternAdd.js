@@ -148,30 +148,35 @@ const TestPatternAdd = () => {
         </ul>
       </div>
     </nav>
-    <div className="mt-[12vh]">
-    
+    <div className="bg-gray-100 pt-[5vh]">
+    <div className="pb-5">
+      
+      <h1 className="font-semibold text-3xl font-serif tracking-wide pb-5 px-10 text-left">Company Details</h1>
       <form className="grid lg:grid-cols-3 md:grid-cols-2 mx-5">
+      <div className="input-type px-2 py-2">
+          <input
+            type="file"
+            name="logo"
+            accept="image/*"
+            onChange={uploadImage}
+            className="block text-base border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 w-full  border-gray-400  px-2 py-2 focus:border-gray-500 text-center"
+            placeholder="Logo"
+            required
+          />
+          <p className="text-xs text-gray-500 px-5">Upload JPG/JPEG less than 1mb</p>
+        </div>
         <div className="input-type px-2 py-2">
+          
           <input
             type="text"
             name="companyname"
             onChange={setformData}
             className="border w-full px-5 py-3 focus:outline-none rounded-md focus:border-gray-500"
-            placeholder="Company"
+            placeholder="Company's Name"
             required
           />
         </div>
-        <div className="input-type px-2 py-2">
-          <input
-            type="file"
-            name="logo"
-            onChange={uploadImage}
-            className="w-full px-5 py-3 focus:outline-none rounded-md focus:border-gray-500 text-center"
-            placeholder="Logo"
-            required
-          />
-          <p className="text-xs px-5">Upload JPG/JPEG less than 1mb</p>
-        </div>
+        
         <div className="input-type px-2 py-2">
           <input
             type="text"
@@ -214,7 +219,7 @@ const TestPatternAdd = () => {
             name="duration"
             onChange={setformData}
             className="border w-full px-5 py-3 focus:outline-none rounded-md focus:border-gray-500"
-            placeholder="Duration"
+            placeholder="Enter Duration in Minutes"
             required
           />
         </div>
@@ -229,10 +234,12 @@ const TestPatternAdd = () => {
           />
         </div>
       </form>
-      <h3 className=" text-2xl text-gray-500 my-6 text-center">
+      </div>
+
+      <div>
+      <h3 className="font-semibold text-2xl font-serif tracking-wide py-2 px-10 text-left">
         Add Test Pattern Section - {count}
       </h3>
-
       <form
         className="grid lg:grid-cols-3 md:grid-cols-2 pt-6 pb-3 mx-5"
         onSubmit={handleSection}
@@ -246,7 +253,7 @@ const TestPatternAdd = () => {
               setsection(e.target.value);
             }}
             className="border w-full px-5 py-3 focus:border-gray-500 rounded-md"
-            placeholder="Section"
+            placeholder="Section Number"
             required
           />
         </div>
@@ -259,7 +266,7 @@ const TestPatternAdd = () => {
               settitle(e.target.value);
             }}
             className="border w-full px-5 py-3 focus:border-gray-500 rounded-md"
-            placeholder="title"
+            placeholder="Section Name"
             required
           />
         </div>
@@ -312,14 +319,15 @@ const TestPatternAdd = () => {
           />
         </div>
         <div className="text-center">
-          <button className="rounded border text-gray-800 border-gray-600 cursor-pointer mt-4 px-4 py-2">
-            Add Section {count}
+          <button className="rounded border bg-sky-500 text-gray-800 text-white cursor-pointer mt-4 px-4 py-2">
+            Save Section {count}
           </button>
         </div>
       </form>
+      </div>
       <div className="p-3 text-center my-5 mx-5">
         <button
-          className="px-4 py-2 border rounded border-gray-800 text-gray-800 bg-gray-100"
+          className="px-4 py-2 border bg-green-600 rounded  text-white text-lg tracking-wide bg-gray-100"
           onClick={handleFinalSubmit}
         >
           Post Patterns

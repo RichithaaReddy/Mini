@@ -2,7 +2,7 @@ import "./App.css";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Login from "./components/Login";
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signup from "./components/Signup";
 import Profile from "./components/Profile";
@@ -14,6 +14,9 @@ import Company from "./components/Company";
 import About from "./components/About";
 import AdminDashboard from "./components/AdminDashboard";
 import StudentDashboard from "./components/StudentDashboard";
+import MockTestVerbal from "./components/MockTestVerbal";
+import MockTestQuant from "./components/MockTestQuant";
+import MockTestTech from "./components/MockTestTech";
 function App() {
   return (
     <div className="App">
@@ -25,7 +28,13 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/mocktestverbal" element={<MockTestVerbal />} />
+          <Route path="/mocktestquant" element={<MockTestQuant />} />
+          <Route path="/mocktesttech" element={<MockTestTech />} />
+
+          <Route path="/mocktestverbal" element={<MockTestVerbal />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/studentdashboard" element={<StudentDashboard />} />
           <Route path="/testpatterns" element={<Testpatterns />} />
           <Route path="/admin/testpatternsadd" element={<TestPatternAdd />} />
           <Route path="/admin/testpatternsdisplay" element={<TestPatternsDisplay />} />

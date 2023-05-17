@@ -1,7 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const AdminDashboard = () => {
+  const [usercount,setusercount] = useState('');
+  const[users,setusers] = useState([]);
+  const [testcount,settestcount] = useState('');
   const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem("admin");
@@ -11,6 +15,21 @@ const AdminDashboard = () => {
     if (!localStorage.getItem("admin")) {
       navigate("/Login");
     }
+    const stat = axios.get("http://localhost:5000/getusers").then((res)=>{
+      console.log(res);
+      console.log(res.data);
+      setusercount(res.data.length);
+      setusers(res.data);
+    }).catch((res)=>{
+      console.log(res)
+    })
+    const testdet = axios.get("http://localhost:5000/testpatterns").then((res)=>{
+      console.log(res);
+      settestcount(res.data.length);
+    }).catch((err)=>{
+      console.log(err)
+    })
+
   }, []);
 
   return (
@@ -72,15 +91,15 @@ const AdminDashboard = () => {
               <tbody>
                 <tr>
                   <td className="px-3 py-3">Number of Users</td>
-                  <td className="px-3 py-3">61</td>
+                  <td className="px-3 py-3">{usercount}</td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-3">Number of Companies</td>
-                  <td className="px-3 py-3">10</td>
+                  <td className="px-3 py-3">Number of Companies Registered</td>
+                  <td className="px-3 py-3">{testcount}</td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-3">Total Testpatterns</td>
-                  <td className="px-3 py-3">10</td>
+                  <td className="px-3 py-3">Total Testpatterns Available</td>
+                  <td className="px-3 py-3">{testcount}</td>
                 </tr>
                 <tr>
                   <td className="px-3 py-3">Number of Mocktests</td>
@@ -88,10 +107,6 @@ const AdminDashboard = () => {
                 </tr>
                 <tr>
                   <td className="px-3 py-3">Test Taken By Users</td>
-                  <td className="px-3 py-3">10</td>
-                </tr>
-                <tr>
-                  <td className="px-3 py-3">Total Testpatterns</td>
                   <td className="px-3 py-3">10</td>
                 </tr>
               </tbody>
@@ -151,25 +166,28 @@ const AdminDashboard = () => {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-gray-300">
-                    <tr className="hover:bg-gray-100 border-b border-gray-500">
-                      <td className="px-6 py-4 text-left whitespace-nowrap font-mono  text-red-400">
-                        20
-                      </td>
-                      <td className="px-6 py-4 text-left whitespace-nowrap text-gray-800">
-                        pla01
-                      </td>
-
-                      <td className="px-6 py-4 text-left whitespace-nowrap text-green-500">
-                        richi@gmail.com
-                      </td>
-
-                      <td className="px-6 py-4 whitespace-nowrap text-left">
-                        Richitha Reddy
-                      </td>
-                      <td className="px-6 py-4 font-semibold whitespace-nowrap text-green-600">
-                        3
-                      </td>
-                    </tr>
+                   {users &&  users.map((user)=>{
+                    return (
+                        <tr className="hover:bg-gray-100 border-b border-gray-500">
+                          <td className="px-6 py-4 text-left whitespace-nowrap font-mono  text-red-400">
+                            -
+                          </td>
+                          <td className="px-6 py-4 text-left whitespace-nowrap text-gray-800">
+                            {user._id}
+                          </td>
+    
+                          <td className="px-6 py-4 text-left whitespace-nowrap text-green-500">
+                            {user.email}
+                          </td>
+    
+                          <td className="px-6 py-4 whitespace-nowrap text-left">
+                            {user.name}
+                          </td>
+                          <td className="px-6 py-4 font-semibold whitespace-nowrap text-green-600">
+                            3
+                          </td>
+                      </tr>)
+                   })}
                   </tbody>
                 </table>
               </div>

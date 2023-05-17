@@ -22,7 +22,7 @@ const Home = () => {
             </Link>
           </li>
           <li className="ml-4">
-            <Link to="/Testpatterns" className="text-cyan-700 hover:text-cyan-800">
+            <Link to="/dashboard/student/testpatterns" className="text-cyan-700 hover:text-cyan-800">
               Test patterns
             </Link>
           </li>

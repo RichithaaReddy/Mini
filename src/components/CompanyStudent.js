@@ -9,9 +9,6 @@ const Company = () => {
     let {id} = useParams();
     console.log( "id is ",id);
     useEffect(()=>{
-      if (!localStorage.getItem("admin")) {
-        navigate("/Login");
-      }
          const url = "http://localhost:5000/testpatternsdisplay/"+id;
         console.log("url is " , url);
         const d = axios.get(url).then((res)=>{

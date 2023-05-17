@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const MockTestQuant = () => {
   const [timeLeft, setTimeLeft] = useState(20000); // 3 minutes
   const [answers, setAnswers] = useState(Array(10).fill(""));
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [score, setScore] = useState(0);
+  const [typeOfExam, setTypeOfExam] = useState("");
 
   useEffect(() => {
     let timer;
@@ -24,7 +26,6 @@ const MockTestQuant = () => {
     newAnswers[questionIndex] = event.target.value;
     setAnswers(newAnswers);
   };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     setIsSubmitted(true);
@@ -35,8 +36,25 @@ const MockTestQuant = () => {
       }
     });
     setScore(newScore);
+    setTypeOfExam("Quant MockTest")
+ 
     console.log("Answers:", answers);
     console.log("Score:", newScore);
+    // const typeOfExam = "Quant Mocktest"
+    const data ={
+      //email: "example@example.com", 
+        typeofExam : typeOfExam,
+        answers: answers,
+        score: newScore,
+    };
+    console.log(typeOfExam);
+  axios.post("/scorecard",data)
+  .then((res)=>{
+    console.log(res)
+  })
+  .catch((err)=>{
+    console.log(err)
+  })
   };
 
   const optionA = "A";
@@ -654,7 +672,8 @@ const MockTestQuant = () => {
           <div className="bg-gray-200 p-3 rounded-md">
             <p>Time's up!</p>
             <p>Test Submitted!</p>
-            <p>Score: {score}</p>
+            <p>Marks Scored: {score}</p>
+            <p>Total Marks: 10</p>
           </div>
         )}
       </div>

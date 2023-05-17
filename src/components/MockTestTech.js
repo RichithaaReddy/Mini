@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const MockTestTech = () => {
   const [timeLeft, setTimeLeft] = useState(20000); // 3 minutes
@@ -37,6 +38,21 @@ const MockTestTech = () => {
     setScore(newScore);
     console.log("Answers:", answers);
     console.log("Score:", newScore);
+
+    const data ={
+      //email: "example@example.com", 
+        typeOfExam: "Technical Mocktest",
+        answers: answers,
+        score: newScore,
+    };
+ 
+  axios.post("/scorecard",data)
+  .then((res)=>{
+    console.log(res)
+  })
+  .catch((err)=>{
+    console.log(err)
+  })
   };
 
   const optionA = "A";

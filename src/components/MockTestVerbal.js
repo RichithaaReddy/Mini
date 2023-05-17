@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import axios from "axios";
 const MockTestVerbal = () => {
   const [timeLeft, setTimeLeft] = useState(20000); // 3 minutes
   const [answers, setAnswers] = useState(Array(10).fill(""));
@@ -19,6 +19,13 @@ const MockTestVerbal = () => {
     return () => clearInterval(timer);
   }, [timeLeft, isSubmitted]);
 
+
+
+  // const status = axios.post("http://localhost:5000/MockTestVerbal",score)
+  // .then((res)=>{
+  //   console.log(res)
+  // })
+
   const handleOptionChange = (event, questionIndex) => {
     const newAnswers = [...answers];
     newAnswers[questionIndex] = event.target.value;
@@ -37,8 +44,23 @@ const MockTestVerbal = () => {
     setScore(newScore);
     console.log("Answers:", answers);
     console.log("Score:", newScore);
-  };
+    console.log(newScore)
 
+    const data ={
+      //email: "example@example.com", 
+        typeofExam: "Verbal MockTest",
+        answers: answers,
+        score: newScore,
+    };
+ 
+  axios.post("/scorecard",data)
+  .then((res)=>{
+    console.log(res)
+  })
+  .catch((err)=>{
+    console.log(err)
+  })
+};
   const optionA = "A";
   const optionB = "B";
   const optionC = "C";

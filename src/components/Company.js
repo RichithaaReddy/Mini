@@ -1,13 +1,17 @@
 import React,{useEffect,useState} from 'react'
 import { useParams } from 'react-router-dom'
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 const Company = () => {
     const navigate = useNavigate();
     const [company,setcompany] = useState('');
     const [cid,setcid] = useState('');
     let {id} = useParams();
     console.log( "id is ",id);
+    const logout = () => {
+      localStorage.removeItem("admin");
+      navigate("/");
+    };
     useEffect(()=>{
       if (!localStorage.getItem("admin")) {
         navigate("/Login");
@@ -25,17 +29,58 @@ const Company = () => {
     },[id])
 
   return (
+    
     <div className="min-h-screen">
+       <nav className="bg-white sticky flex justify-between items-center h-12 md:h-16">
+        <Link
+          to="/"
+          className="text-blue-800 tracking-wider md:text-2xl font-bold  ml-8 font-mono"
+        >
+          PLACIFY
+        </Link>
+        <div className="m-auto">
+          <ul className="flex">
+            <li className="ml-4">
+              <Link
+                to="/admin/dashboard"
+                className="text-cyan-700 hover:text-cyan-800"
+              >
+                Dashboard
+              </Link>
+            </li>
+            <li className="ml-4">
+              <Link
+                to="/admin/testpatternsdisplay"
+                className="text-cyan-700 hover:text-cyan-800"
+              >
+                Test patterns
+              </Link>
+            </li>
+            <li className="ml-4 text-cyan-700 hover:text-cyan-800">
+              <a onClick={logout}>Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
       <div className="mx-7 pt-[14vh] ">
         <div className="mx-3">
-          {company ? <h1 className=" text-gray-800 font-semibold my-3 text-2xl">
+          {company ? <h1 className=" text-cyan-800 font-semibold my-3 text-2xl">
             {company.companyname} Test Pattern
           </h1> : null }
           <p className="">
+            <br/>
             All the details given in the table are a rough estimate. The number
             of questions and time duration depends and may vary on the
             respective companies for which the exam is being conducted.
           </p>
+          <div>
+            <center>
+               <br/>
+               <h4>Duration : {company.duration}</h4>
+               <br/>
+               <h4>OverAll Cutoff : {company.overallcutoff}</h4>
+            </center>
+          </div>
         </div>
         <div className="container mx-auto mt-7 px-4   py-8 ">
           <table className="w-full text-sm text-center shadow ring-1 ring-black ring-opacity-5 text-gray-900 divide-y divide-gray-300 md:rounded-lg">

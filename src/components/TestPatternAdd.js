@@ -86,7 +86,8 @@ const TestPatternAdd = () => {
     //             swal("Enter all Details");
     //             return;
     //        }
-    if (formData.testsections.length === 0) {
+    if (formData.testsections.length === 0) 
+    {
       swal("Enter Sections as No section was added");
       return;
     }
@@ -102,6 +103,7 @@ const TestPatternAdd = () => {
  }
 
   const handleSection = (e) => {
+    console.log(formData);
     e.preventDefault();
     setcount(count + 1);
     if (difficulty == "") {
@@ -319,7 +321,7 @@ const TestPatternAdd = () => {
           />
         </div>
         <div className="text-center">
-          <button className="rounded border bg-sky-500 text-gray-800 text-white cursor-pointer mt-4 px-4 py-2">
+          <button className="rounded border bg-sky-500 text-gray-800  cursor-pointer mt-4 px-4 py-2">
             Save Section {count}
           </button>
         </div>
@@ -327,7 +329,7 @@ const TestPatternAdd = () => {
       </div>
       <div className="p-3 text-center my-5 mx-5">
         <button
-          className="px-4 py-2 border bg-green-600 rounded  text-white text-lg tracking-wide bg-gray-100"
+          className="px-4 py-2 border bg-green-600 rounded  text-white text-lg tracking-wide "
           onClick={handleFinalSubmit}
         >
           Post Patterns

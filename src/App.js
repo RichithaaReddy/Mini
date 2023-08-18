@@ -12,12 +12,15 @@ import TestPatternAdd from "./components/TestPatternAdd";
 import TestPatternsDisplay from "./components/TestPatternsDisplay";
 import Company from "./components/Company";
 import About from "./components/About";
+import Contact from './components/Contact'
 import CompanyStudent from './components/CompanyStudent';
 import AdminDashboard from "./components/AdminDashboard";
 import StudentDashboard from "./components/StudentDashboard";
 import MockTestVerbal from "./components/MockTestVerbal";
 import MockTestQuant from "./components/MockTestQuant";
 import MockTestTech from "./components/MockTestTech";
+import Email from "./components/Email";
+import Gdrules from "./components/Gdrules";
 function App() {
   return (
     <div className="App">
@@ -29,6 +32,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/email" element={<Email />} />
+          <Route path="/contact" element={<Contact />} />
+
+          <Route path="/gd" element={<Gdrules />} />
+
           <Route path="/mocktestverbal" element={<MockTestVerbal />} />
           <Route path="/mocktestquant" element={<MockTestQuant />} />
           <Route path="/mocktesttech" element={<MockTestTech />} />

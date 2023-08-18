@@ -1,122 +1,73 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { FaLaptopCode } from 'react-icons/fa';
-import { HiOutlineUserGroup } from 'react-icons/hi';
-import { AiOutlineFileSearch } from 'react-icons/ai';
+import React from "react";
+import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div>
-       <nav className="bg-white sticky flex justify-between items-center h-12 md:h-16">
-      <Link
-        to="/"
-        className="text-blue-800 tracking-wider md:text-2xl font-bold  ml-8 font-mono"
-      >
-        PLACIFY
-      </Link>
-      <div className="m-auto">
-        <ul className="flex">
-          <li className="ml-4">
-            <Link to="/About" className="text-cyan-700 hover:text-cyan-800">
-              About
-            </Link>
-          </li>
-          <li className="ml-4">
-            <Link to="/dashboard/student/testpatterns" className="text-cyan-700 hover:text-cyan-800">
-              Test patterns
-            </Link>
-          </li>
-          {/* <li className="ml-4">
-            <Link to="/Login" className="text-cyan-700 hover:text-cyan-800">
-              Contact us
-            </Link>
-          </li> */}
-          <li className="ml-4">
-            <Link to="/Login" className="text-cyan-700 hover:text-cyan-800">
-              Login
-            </Link>
-          </li>
-          <li className="ml-4">
-            <Link to="/Signup" className="text-cyan-700 hover:text-cyan-800">
-              Signup
-            </Link>
-          </li>
-          <li className="ml-4">
-            <Link to="/help" className="text-cyan-700 hover:text-cyan-800">
-              Help
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div className='min-h-screen'>
-       <div className=" px-5">
-      <div className="flex py-12 px-3 md:px-8">
-        <div className="mx-3">
-          <h1 className="text-3xl font-bold mb-6 text-left">With Placify, get ready for your dream job.</h1>
-          <p className="text-xl text-gray-800 mb-8 text-left">Prepare for your Placements and land your ideal job with the help of Placify,a platform that promises to make it easy for students to practise examinations by giving test patterns for various organisations and mock tests so that students have access to test patterns and take tests online while also allowing colleges to clearly observe student performance.</p>
-          <div className="flex items-center">
-            <div className="flex mr-4">
-              <div className="rounded-full bg-violet-700 p-4 mr-4"><HiOutlineUserGroup className="text-white text-2xl" /></div>
-              <div className="text-2xl pt-2 font-bold"> Students</div>
-            </div>
-            <div className="flex items-center">
-              <div className="rounded-full bg-violet-700 p-4 mr-4"><AiOutlineFileSearch className="text-white text-2xl" /></div>
-              <div className="text-2xl font-bold"> Admins</div>
-            </div>
-          </div>
+    <div className="overflow-x-hidden ">
+      <Navbar />
+      <div className="mt-[11vh]">
+        {/* Place your background image */}
+        <div className="z-0 ">
+          <img
+            src="https://bishopco.net/wp-content/uploads/2019/09/3-Reasons-a-College-Degree-Helps-You-Get-to-the-Interview-Stage.jpg"
+            alt=""
+            className="w-screen"
+          />
         </div>
-        <div className=" mx-5 p-5">
-          <img src="https://www.sankara.ac.in/science-and-commerce/wp-content/uploads/2021/04/Placement-Cell-Image-1.jpg" alt="placement" className="rounded-2xl shadow-2xl" />
-        </div>
-      </div>
-      <div className="px-14 ">
-        <div className="text-3xl text-left font-bold mb-6">What Placify Offers ?</div>
-        <div className="flex rounded-full items-center mb-8 p-4 mr-4 ">
-          <div className=''><FaLaptopCode className="text-blue-500  text-4xl" /></div>
-          <div>
-            <div className="text-xl font-bold mb-2 px-3">Curated Study Materials</div>
-          </div>
-        </div>
-        <div className="flex rounded-full items-center mb-8 p-4 mr-4">
-          <div className=""><HiOutlineUserGroup className="text-blue-500 text-4xl" /></div>
-          <div>
-            <div className="text-xl font-bold mb-2 px-3">Practice Tests</div>
-            </div>
-    </div>
-    <div className="min-h-screen flex flex-col justify-center items-center px-4 py-8">
-      <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-gray-800">
-          For your Placement Preparation
-        </h1>
-        <p className="mt-4 text-lg text-gray-600">
-        To ace job tests, access carefully selected test patterns and take mock tests.
-        </p>
-      </div>
-      <div className="flex flex-col sm:flex-row justify-center items-center">
-        <div className="mb-4 sm:mb-0 sm:mr-4  flex-shrink-0 bg-white p-6 rounded-lg shadow-lg">
-          
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Practice</h2>
-          
-        </div>
-        <div className="flex-grow-0 flex-shrink-0 bg-white p-6 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Test</h2>
-        </div>
-      </div>
-      <div className="mt-8 text-center">
-        <Link
-          to="/register"
-          className="bg-violet-600 hover:bg-violet-700 text-white font-bold py-2 px-4 rounded"
-          >
-          Register Now
-        </Link>
-      </div>
-    </div>
- </div>
- </div>
-  </div>
-  </div>
-    )
-}
 
-export default Home
+        {/* Your main content */}
+        <div className="home absolute top-32 mt-10 w-[50%] px-36">
+          <div className="">
+            <h1 className="text-5xl font-serif mb-8">
+              Placement Preparation Portal
+            </h1>
+            <p className="text-md text-gray-800 font-semibold mb-8">
+              Placement is a crucial milestone in a student's life, as it
+              determines their future career prospects. To secure a placement in
+              a reputable IT company, students must dedicate themselves to
+              thorough preparation. This involves understanding the various test
+              patterns that different companies employ, such as the inclusion of
+              sections on aptitude and coding. While there are numerous websites
+              that offer information on these topics individually, there is
+              currently no platform that consolidates information about specific
+              company test patterns.
+            </p>
+          </div>
+          <div className="flex justify-between font-serif">
+            <Link
+              className="bg-gradient-to-t from-violet-500 via-violet-600 to-violet-700 text-white px-8 py-4 rounded-lg hover:-translate-y-2 ease-in-out duration-300"
+              to="/login"
+            >
+              Test Patterns
+            </Link>
+            <Link
+              className="bg-gradient-to-t from-violet-500 via-violet-600 to-violet-700 text-white px-8 py-4 rounded-lg hover:-translate-y-2 ease-in-out duration-300"
+              to="/login"
+            >
+              Mock Test
+            </Link>
+          </div>
+        </div>
+        <div className="">
+        <div className="z-0 ">
+          <img
+            src="https://img.freepik.com/free-photo/website-html-code-browser-view-printed-white-paper-closeup-view_211682-166.jpg?w=360"
+            alt=""
+            className="w-screen opacity-40 h-[120mm]"
+          />
+        </div>
+
+          <div className="px-[20%] absolute top-[115%] font-semibold text-violet-950 text-3xl font-serif tracking-wide">
+            "Thorough preparation is the key to securing a reputable IT company
+            placement, as it involves understanding test patterns and
+            company-specific information."
+          </div>
+       
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Home;

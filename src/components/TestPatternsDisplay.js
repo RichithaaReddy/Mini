@@ -74,7 +74,7 @@ const TestPatternsDisplay = () => {
                 <Link to={`/admin/testpatternsdisplay/${company.companyname}`}>
                   <div className="mx-5 my-3 rounded shadow-md py-4 flex flex-col justify-between cursor-pointer">
                     <div className=" bg-white aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:aspect-none">
-                      <img src={company.logo} height={100} width={200} />
+                      <img src={company.logo} className="h-[40mm]" />
                     </div>
                     <div className="mt-4 flex justify-center">
                       <h3 className="text-lg font-semibold text-gray-700">

@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <div className="bg-white  shadow dark:bg-gray-900">
+    <div className=" shadow bg-gray-900">
       <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="self-center whitespace-nowrap dark:text-white  tracking-wider md:text-2xl font-bold font-mono">
+          <span className="self-center font-serif whitespace-nowrap text-gray-300  tracking-wider md:text-2xl font-bold font-mono">
             PLACIFY
           </span>
 

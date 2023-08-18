@@ -6,6 +6,8 @@ const AdminDashboard = () => {
   const [usercount,setusercount] = useState('');
   const[users,setusers] = useState([]);
   const [testcount,settestcount] = useState('');
+  // const [count,setCount] = useState(0)
+  var count=0
   const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem("admin");
@@ -77,7 +79,7 @@ const AdminDashboard = () => {
       </nav>
       <div className="min-h-screen">
         <div className="bg-gray-50 flex">
-          <div className="bg-gray-800 h-screen text-white text-left p-5">
+          <div className="bg-gray-800 h-auto text-white text-left p-5">
             <p className="text-center font-semibold tracking-wide">
               OVERALL ANALYSIS
             </p>
@@ -103,7 +105,7 @@ const AdminDashboard = () => {
                 </tr>
                 <tr>
                   <td className="px-3 py-3">Number of Mocktests</td>
-                  <td className="px-3 py-3">1</td>
+                  <td className="px-3 py-3">3</td>
                 </tr>
                 <tr>
                   <td className="px-3 py-3">Test Taken By Users</td>
@@ -165,12 +167,14 @@ const AdminDashboard = () => {
                 </th> */}
                     </tr>
                   </thead>
+
                   <tbody className="bg-white divide-gray-300">
                    {users &&  users.map((user)=>{
                     return (
                         <tr className="hover:bg-gray-100 border-b border-gray-500">
                           <td className="px-6 py-4 text-left whitespace-nowrap font-mono  text-red-400">
-                            -
+                            
+                            {count+=1}
                           </td>
                           <td className="px-6 py-4 text-left whitespace-nowrap text-gray-800">
                             {user._id}

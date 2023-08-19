@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import swal from 'sweetalert';
 export default function Login() {
   const navigate = useNavigate();
@@ -38,21 +36,19 @@ export default function Login() {
       }
     }
 
-    const status = await axios.post("https://localhost:5000/login",user);
-    console.log(status);
-      // .post("http://localhost:5000/login", user)
-      // .then((res) => {
-      //   console.log("ress",res.data);
-      //   if (res.data.status === "Invalid credentials") {
-      //      swal("Invalid credentials")
-      //   } else if (res.data.status === "enter all fields") {
-      //     swal("Enter all fields")
-      //   } else {
-      //     localStorage.setItem("token", res.data.status);
-      //     send();
-      //   }
-      // }
-      // );
+    const status = await axios.post("http://localhost:5000/login",user)
+      .then((res) => {
+        console.log("ress",res.data);
+        if (res.data.status === "Invalid credentials") {
+           swal("Invalid credentials")
+        } else if (res.data.status === "enter all fields") {
+          swal("Enter all fields")
+        } else {
+          localStorage.setItem("token", res.data.status);
+          send();
+        }
+      }
+      );
   };
   const backgroundImageUrl =
     "https://plus.unsplash.com/premium_photo-1668473365978-5f29069b0c6e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80";

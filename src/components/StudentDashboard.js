@@ -41,12 +41,12 @@ const StudentDashboard = () => {
       <div className="m-auto">
         <ul className="flex">
         <li className="ml-4">
-            <Link to="/admin/dashboard" className="text-cyan-700 hover:text-cyan-800">
+            <Link to="/dashboard/student" className="text-cyan-700 hover:text-cyan-800">
               Dashboard
             </Link>
           </li>
           <li className="ml-4">
-            <Link to="/admin/testpatternsdisplay" className="text-cyan-700 hover:text-cyan-800">
+            <Link to="/dashboard/student/testpatterns" className="text-cyan-700 hover:text-cyan-800">
               Test patterns
             </Link>
           </li>

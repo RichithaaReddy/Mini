@@ -30,7 +30,7 @@ export default function Signup() {
 
   const postData = async (e) => {
     e.preventDefault();
-    console.log(user)
+    console.log("user",user)
     const { name, email, password, cpassword } = user;
     // const res = await fetch("/register", {
     //   method: "POST",
@@ -51,9 +51,10 @@ export default function Signup() {
     // }
     const status = axios.post("http://localhost:5000/register",user).then((res)=>{
       if(res.data.message === "user registered sucessfully"){
+        console.log(res.data)
         window.alert("Registration Success")
         console.log("Registration Success") 
-       send()
+       send();
       }
       else if(res.data.message === "Email exists"){
         window.alert("Email already exists")

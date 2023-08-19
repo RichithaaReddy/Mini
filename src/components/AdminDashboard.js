@@ -58,7 +58,7 @@ const AdminDashboard = () => {
                 to="/admin/testpatternsdisplay"
                 className="text-cyan-700 hover:text-cyan-800"
               >
-                Test patterns
+                Test Patterns
               </Link>
             </li>
             {/* <li className="ml-4">
@@ -66,7 +66,7 @@ const AdminDashboard = () => {
               Contact us
             </Link>
           </li> */}
-            <li className="ml-4 text-cyan-700 hover:text-cyan-800">
+            <li className="ml-4 text-cyan-700 hover:text-cyan-800 cursor-auto">
               <a onClick={logout}>Logout</a>
             </li>
             {/* <li className="ml-4">

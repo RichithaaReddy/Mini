@@ -1,13 +1,16 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 const AdminDashboard = () => {
-  const [usercount,setusercount] = useState('');
-  const[users,setusers] = useState([]);
-  const [testcount,settestcount] = useState('');
+  const [searchValue, setSearchValue] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [userScores, setUserScores] = useState([]);
+  const [usercount, setusercount] = useState("");
+  const [users, setusers] = useState([]);
+  const [testcount, settestcount] = useState("");
   // const [count,setCount] = useState(0)
-  var count=0
+  var count = 0;
   const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem("admin");
@@ -17,22 +20,36 @@ const AdminDashboard = () => {
     if (!localStorage.getItem("admin")) {
       navigate("/Login");
     }
-    const stat = axios.get("http://localhost:5000/getusers").then((res)=>{
-      console.log(res);
-      console.log(res.data);
-      setusercount(res.data.length);
-      setusers(res.data);
-    }).catch((res)=>{
-      console.log(res)
-    })
-    const testdet = axios.get("http://localhost:5000/testpatterns").then((res)=>{
-      console.log(res);
-      settestcount(res.data.length);
-    }).catch((err)=>{
-      console.log(err)
-    })
-
+    const stat = axios
+      .get("http://localhost:5000/getusers")
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+        setusercount(res.data.length);
+        setusers(res.data);
+      })
+      .catch((res) => {
+        console.log(res);
+      });
+    const testdet = axios
+      .get("http://localhost:5000/testpatterns")
+      .then((res) => {
+        console.log(res);
+        settestcount(res.data.length);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
+  const handleSearchInputChange = (event) => {
+    const searchInput = event.target.value;
+    setSearchValue(searchInput);
+    const filtered = users.filter((user) => {
+      return user.email.toLowerCase().includes(searchInput.toLowerCase());
+    });
+
+    setFilteredUsers(filtered);
+  };
 
   return (
     <div>
@@ -80,37 +97,37 @@ const AdminDashboard = () => {
       <div className="min-h-screen">
         <div className="bg-gray-50 flex">
           <div className="bg-gray-800 h-auto text-white text-left p-5">
-            <p className="text-center font-semibold tracking-wide">
-              OVERALL ANALYSIS
+            <p className="text-center text-[27px] py-10 font-bold tracking-wide">
+              DATA   ANALYSIS
             </p>
-            <table>
+            <table className="text-[20px] ">
               <thead>
                 <tr>
-                  <th className="px-3 py-3">Data</th>
-                  <th className="px-3 py-3">Values</th>
+                  <th className="px-3 py-4">Data</th>
+                  <th className="px-3 py-4">Values</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td className="px-3 py-3">Number of Users</td>
-                  <td className="px-3 py-3">{usercount}</td>
+                  <td className="px-3 py-4">Number of Users</td>
+                  <td className="px-3 py-4">{usercount}</td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-3">Number of Companies Registered</td>
-                  <td className="px-3 py-3">{testcount}</td>
+                  <td className="px-3 py-4">Number of Companies Registered</td>
+                  <td className="px-3 py-4">{testcount}</td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-3">Total Testpatterns Available</td>
-                  <td className="px-3 py-3">{testcount}</td>
+                  <td className="px-3 py-4">Total Testpatterns Available</td>
+                  <td className="px-3 py-4">{testcount}</td>
                 </tr>
                 <tr>
-                  <td className="px-3 py-3">Number of Mocktests</td>
-                  <td className="px-3 py-3">3</td>
+                  <td className="px-3 py-4">Number of Mocktests</td>
+                  <td className="px-3 py-4">3</td>
                 </tr>
-                <tr>
+                {/* <tr>
                   <td className="px-3 py-3">Test Taken By Users</td>
                   <td className="px-3 py-3">10</td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
           </div>
@@ -127,7 +144,9 @@ const AdminDashboard = () => {
                     <input
                       className="w-full p-3 bg-gray-200 outline-none border-transparent focus:border-transparent focus:ring-0 rounded-lg text-sm"
                       type="text"
-                      placeholder="Search using PlacifyId..."
+                      placeholder="Search using EmailId..."
+                      value={searchValue}
+                      onChange={handleSearchInputChange}
                     />
                   </div>
                   <div>
@@ -169,29 +188,32 @@ const AdminDashboard = () => {
                   </thead>
 
                   <tbody className="bg-white divide-gray-300">
-                   {users &&  users.map((user)=>{
-                    return (
-                        <tr className="hover:bg-gray-100 border-b border-gray-500">
-                          <td className="px-6 py-4 text-left whitespace-nowrap font-mono  text-red-400">
-                            
-                            {count+=1}
-                          </td>
-                          <td className="px-6 py-4 text-left whitespace-nowrap text-gray-800">
-                            {user._id}
-                          </td>
-    
-                          <td className="px-6 py-4 text-left whitespace-nowrap text-green-500">
-                            {user.email}
-                          </td>
-    
-                          <td className="px-6 py-4 whitespace-nowrap text-left">
-                            {user.name}
-                          </td>
-                          <td className="px-6 py-4 font-semibold whitespace-nowrap text-green-600">
-                            3
-                          </td>
-                      </tr>)
-                   })}
+                    {(filteredUsers.length > 0 ? filteredUsers : users).map(
+                      (user) => {
+                        return (
+                          <tr
+                            className="hover:bg-gray-100 border-b border-gray-500"
+                            key={user._id}
+                          >
+                            <td className="px-6 py-4 text-left whitespace-nowrap font-mono  text-red-400">
+                              {(count += 1)}
+                            </td>
+                            <td className="px-6 py-4 text-left whitespace-nowrap text-gray-800">
+                              {user._id}
+                            </td>
+                            <td className="px-6 py-4 text-left whitespace-nowrap text-green-500">
+                              {user.email}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-left">
+                              {user.name}
+                            </td>
+                            <td className="px-6 py-4 font-semibold whitespace-nowrap text-green-600">
+                              3
+                            </td>
+                          </tr>
+                        );
+                      }
+                    )}
                   </tbody>
                 </table>
               </div>

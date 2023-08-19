@@ -22,37 +22,42 @@ const TestPatternsDisplay = () => {
   };
   return (
     <div>
-      <nav className="bg-white sticky flex justify-between items-center h-12 md:h-16">
-        <Link
-          to="/"
-          className="text-blue-800 tracking-wider md:text-2xl font-bold  ml-8 font-mono"
-        >
-          PLACIFY
-        </Link>
-        <div className="m-auto">
-          <ul className="flex">
-            <li className="ml-4">
-              <Link
-                to="/dashboard/student"
-                className="text-cyan-700 hover:text-cyan-800"
-              >
-                Dashboard
-              </Link>
-            </li>
-            <li className="ml-4">
-              <Link
-                to="/admin/testpatternsdisplay"
-                className="text-cyan-700 hover:text-cyan-800"
-              >
-                Test patterns
-              </Link>
-            </li>
-            <li className="ml-4 text-cyan-700 hover:text-cyan-800">
-              <a onClick={logout}>Logout</a>
-            </li>
-          </ul>
+      <div>
+      <div className="border-b border-gray-300 py-2 fixed top-[-7px] w-[100%] z-40 bg-slate-50">
+        <div className="flex items-center justify-between  flex-wrap ">
+          <div className="navbar fixed top-0 z-50 py-4 px-5 font-serif bg-transparent backdrop-filter backdrop-blur-lg shadow-md w-full">
+            <div className="relative grid grid-cols-2 items-center">
+              <p className="py-1 mr-80 text-4xl " to="#">
+                PLACIFY
+              </p>
+              <div className="flex gap-2 mx-10 text-lg aLinkgn-text-bottom">
+                <Link
+                  className="px-6 py-3  cursor-pointer font-semibold hover:text-violet-700 hover:text-xl ease-in-out duration-300"
+                  to="/dashboard/student"
+                >
+                  Dashboard
+                </Link>
+                <Link
+                  className="px-6 py-3 cursor-pointer font-semibold hover:text-violet-700 hover:text-xl ease-in-out duration-300"
+                  to="/admin/testpatternsdisplay"
+                >
+                  Test patterns
+                </Link>
+               
+                <Link
+                  className="px-6 py-3 cursor-pointer font-semibold hover:text-violet-700 hover:text-xl ease-in-out duration-300"
+                  
+                >
+                  <a onClick={logout}>Logout</a>
+                </Link>
+              </div>
+            </div>
+          </div>
+          {/* )} */}
         </div>
-      </nav>
+      </div>
+    </div>
+      
       <div className="min-h-screen bg-gray-100">
       <div class=" pt-14 w-full">
         <div className="realtive">

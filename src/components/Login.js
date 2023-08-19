@@ -30,30 +30,27 @@ export default function Login() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(user);
-    if (user.email === "admin@placify.com") {
-      if (user.password === "admin@123") {
-        adminsend();
-      } else {
-        window.alert("Hey Admin entered password is wrong...");
+    if (user.email === "admin@placify.com" && user.password === "admin@123") {
+      adminsend();
+    } else {
+      try {
+        const response = await axios.post("http://localhost:5000/login", user);
+        console.log("response", response.data);
+        
+        if (response.data.status === "Invalid credentials") {
+          swal("Invalid credentials");
+        } else if (response.data.status === "enter all fields") {
+          swal("Enter all fields");
+        } else {
+          localStorage.setItem("token", response.data.status);
+          send();
+        }
+      } catch (error) {
+        console.error("Error while logging in:", error);
+        swal("An error occurred while logging in.");
       }
     }
-
-    const status = await axios.post("https://localhost:5000/login",user);
-    console.log(status);
-      // .post("http://localhost:5000/login", user)
-      // .then((res) => {
-      //   console.log("ress",res.data);
-      //   if (res.data.status === "Invalid credentials") {
-      //      swal("Invalid credentials")
-      //   } else if (res.data.status === "enter all fields") {
-      //     swal("Enter all fields")
-      //   } else {
-      //     localStorage.setItem("token", res.data.status);
-      //     send();
-      //   }
-      // }
-      // );
-  };
+  }
   const backgroundImageUrl =
     "https://plus.unsplash.com/premium_photo-1668473365978-5f29069b0c6e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80";
 

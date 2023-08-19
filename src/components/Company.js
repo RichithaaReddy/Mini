@@ -1,134 +1,129 @@
-import React,{useEffect,useState} from 'react'
-import { useParams } from 'react-router-dom'
-import axios from "axios";
-import { useNavigate,Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 const Company = () => {
-    const navigate = useNavigate();
-    const [company,setcompany] = useState('');
-    const [cid,setcid] = useState('');
-    let {id} = useParams();
-    console.log( "id is ",id);
-    const logout = () => {
-      localStorage.removeItem("admin");
-      navigate("/");
-    };
-    useEffect(()=>{
-      if (!localStorage.getItem("admin")) {
-        navigate("/Login");
-      }
-         const url = "http://localhost:5000/testpatternsdisplay/"+id;
-        console.log("url is " , url);
-        const d = axios.get(url).then((res)=>{
-        console.log(res.data[0]);
-        setcompany(res.data[0]);
-        console.log(res.data[0].companyname);
-        console.log("usestate",)
-    }).catch((err)=>{
+  const navigate = useNavigate();
+  const [company, setCompany] = useState(null);
+  const { id } = useParams();
+
+  const logout = () => {
+    localStorage.removeItem('admin');
+    navigate('/');
+  };
+
+  useEffect(() => {
+    if (!localStorage.getItem('admin')) {
+      navigate('/Login');
+    }
+    const url = `http://localhost:5000/testpatternsdisplay/${id}`;
+
+    axios
+      .get(url)
+      .then((res) => {
+        setCompany(res.data[0]);
+      })
+      .catch((err) => {
         console.log(err);
-    })
-    },[id])
+      });
+  }, [id]);
 
   return (
-    
     <div className="min-h-screen">
-       <nav className="bg-white sticky flex justify-between items-center h-12 md:h-16">
-        <Link
-          to="/"
-          className="text-blue-800 tracking-wider md:text-2xl font-bold  ml-8 font-mono"
-        >
-          PLACIFY
-        </Link>
-        <div className="m-auto">
-          <ul className="flex">
-            <li className="ml-4">
-              <Link
-                to="/admin/dashboard"
-                className="text-cyan-700 hover:text-cyan-800"
-              >
-                Dashboard
-              </Link>
-            </li>
-            <li className="ml-4">
-              <Link
-                to="/admin/testpatternsdisplay"
-                className="text-cyan-700 hover:text-cyan-800"
-              >
-                Test patterns
-              </Link>
-            </li>
-            <li className="ml-4 text-cyan-700 hover:text-cyan-800">
-              <a onClick={logout}>Logout</a>
-            </li>
-          </ul>
+      <div className="border-b border-gray-300 py-2 fixed top-[-7px] w-[100%] z-40 bg-slate-50">
+        <div className="flex items-center justify-between  flex-wrap ">
+          <div className="navbar fixed top-0 z-50 py-4 px-5 font-serif bg-transparent backdrop-filter backdrop-blur-lg shadow-md w-full">
+            <div className="relative grid grid-cols-2 items-center">
+              <p className="py-1 mr-80 text-4xl " to="#">
+                PLACIFY
+              </p>
+              <div className="flex gap-2 mx-10 text-lg aLinkgn-text-bottom">
+                <Link
+                  className="px-6 py-3  cursor-pointer font-semibold hover:text-violet-700 hover:text-xl ease-in-out duration-300"
+                  to="/AdminDashboard"
+                >
+                  Dashboard
+                </Link>
+                <Link
+                  className="px-6 py-3 cursor-pointer font-semibold hover:text-violet-700 hover:text-xl ease-in-out duration-300"
+                  to="/admin/testpatternsdisplay"
+                >
+                  Test patterns
+                </Link>
+               
+                <Link
+                  className="px-6 py-3 cursor-pointer font-semibold hover:text-violet-700 hover:text-xl ease-in-out duration-300"
+                  
+                >
+                  <a onClick={logout}>Logout</a>
+                </Link>
+              </div>
+            </div>
+          </div>
+          {/* )} */}
         </div>
-      </nav>
-      <div className="mx-7 pt-[14vh] ">
+      </div>
+      <div className="mx-7 pt-24">
         <div className="mx-3">
-          {company ? <h1 className=" text-cyan-800 font-semibold my-3 text-2xl">
-            {company.companyname} Test Pattern
-          </h1> : null }
-          <p className="">
-            <br/>
+          {company && (
+            <h1 className="text-3xl uppercase font-serif tracking-wider  my-3 text-blue-800">
+              {company.companyname} Test Pattern
+            </h1>
+          )}
+          <p>
+            <br />
             All the details given in the table are a rough estimate. The number
             of questions and time duration depends and may vary on the
             respective companies for which the exam is being conducted.
           </p>
-          <div>
-            <center>
-               <br/>
-               <h4>Duration : {company.duration}</h4>
-               <br/>
-               <h4>OverAll Cutoff : {company.overallcutoff}</h4>
-            </center>
+          <div className="mt-4">
+            {/* <center>
+              <h4>Duration: {company?.duration}</h4>
+              <h4>Overall Cutoff: {company?.overallcutoff}</h4>
+            </center> */}
           </div>
         </div>
-        <div className="container mx-auto mt-7 px-4   py-8 ">
-          <table className="w-full text-sm text-center shadow ring-1 ring-black ring-opacity-5 text-gray-900 divide-y divide-gray-300 md:rounded-lg">
-            <thead className="text-xs text-center  text-gray-900 uppercase bg-gray-50">
+        <div className="container mx-auto mt-7 px-4 py-8">
+          <table className="w-full text-sm mx-auto text-center shadow-lg bg-white border border-gray-300 rounded-lg">
+            <thead className="bg-blue-100">
               <tr>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900  ">
+                <th className="px-6 py-3 text-left font-semibold text-gray-900">
                   Section
                 </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 ">
+                <th className="px-6 py-3 text-left font-semibold text-gray-900">
                   Title
                 </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 ">
+                <th className="px-6 py-3 text-left font-semibold text-gray-900">
                   No of Questions
                 </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 ">
+                <th className="px-6 py-3 text-left font-semibold text-gray-900">
                   Difficulty
                 </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 ">
+                <th className="px-6 py-3 text-left font-semibold text-gray-900">
                   Duration
                 </th>
               </tr>
             </thead>
             <tbody>
-              {company ? company.testsections.map((item, index) => (
-                <tr key={index} className="bg-white ">
-                  <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                    {item.section}
-                  </td>
-                  <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                    {item.title}
-                  </td>
-                  <td className="px-6 py-4 font-medium text-gray-500 whitespace-nowrap ">
-                    {item.noofques}
-                  </td>
-                  <td className="px-6 py-4 font-medium text-gray-500 whitespace-nowrap ">
-                    {item.difficulty.length > 0 ? item.difficulty : "Varies"}
-                  </td>
-                  <td className="px-6 py-4 font-medium text-gray-500 whitespace-nowrap">
-                    {item.duration}
-                  </td>
-                </tr>
-              )) : null}
+              {company &&
+                company.testsections.map((item, index) => (
+                  <tr key={index}  className="border-b text-left border-gray-300">
+                    <td className="px-6 py-4 text-gray-900">{item.section}</td>
+                    <td className="px-6 py-4 text-gray-900">{item.title}</td>
+                    <td className="px-6 py-4 text-gray-900">{item.noofques}</td>
+                    <td className="px-6 py-4 text-gray-900">
+                      {item.difficulty.length > 0 ? item.difficulty : 'Varies'}
+                    </td>
+                    <td className="px-6 py-4 text-gray-900">{item.duration}</td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Company
+export default Company;

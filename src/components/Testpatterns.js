@@ -39,17 +39,14 @@ const TestPatternsDisplay = () => {
                 </Link>
                 <Link
                   className="px-6 py-3 cursor-pointer font-semibold hover:text-violet-700 hover:text-xl ease-in-out duration-300"
-                  to="/admin/testpatternsdisplay"
+                  to="/dashboard/student/testpatterns"
                 >
                   Test patterns
                 </Link>
                
-                <Link
-                  className="px-6 py-3 cursor-pointer font-semibold hover:text-violet-700 hover:text-xl ease-in-out duration-300"
-                  
-                >
-                  <a onClick={logout}>Logout</a>
-                </Link>
+                
+                  <a onClick={logout}  className="px-6 py-3 cursor-pointer font-semibold hover:text-violet-700 hover:text-xl ease-in-out duration-300">Logout</a>
+                
               </div>
             </div>
           </div>
@@ -57,11 +54,12 @@ const TestPatternsDisplay = () => {
         </div>
       </div>
     </div>
-      
+      <br/><br/>
       <div className="min-h-screen bg-gray-100">
       <div class=" pt-14 w-full">
         <div className="realtive">
           <span className="text-3xl font-bold ml-5 absolute left-8  ">
+
             Test Patterns
           </span>
         </div>

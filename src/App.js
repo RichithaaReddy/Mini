@@ -34,9 +34,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/email" element={<Email />} />
           <Route path="/contact" element={<Contact />} />
-
           <Route path="/gd" element={<Gdrules />} />
-
           <Route path="/mocktestverbal" element={<MockTestVerbal />} />
           <Route path="/mocktestquant" element={<MockTestQuant />} />
           <Route path="/mocktesttech" element={<MockTestTech />} />

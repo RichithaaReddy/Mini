@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from "./Navbar";
 import axios from "axios";
 export default function Signup() {
+  const [alert, setAlert] = useState({
+    type: "",
+    message: "",
+  });
   const navigate = useNavigate();
   const send = ()=>{
     navigate('/login')
@@ -30,45 +34,42 @@ export default function Signup() {
 
   const postData = async (e) => {
     e.preventDefault();
-    console.log("user",user)
+    console.log("user",user);
+  
     const { name, email, password, cpassword } = user;
-    // const res = await fetch("/register", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ name, email, password, cpassword }),
-    // });
-    // const data = await res.json();
-    // if(res.status === 422 || !data){
-    //   window.alert("Invalid registration")
-    //   console.log("Invalid registration")
-    // }
-    // else{
-    //   window.alert("Registration Success")
-    //   console.log("Registration Success")
-    //   navigate.push("/Login")
-    // }
-    const status = axios.post("http://localhost:5000/register",user).then((res)=>{
-      if(res.data.message === "user registered sucessfully"){
-        console.log(res.data)
-        window.alert("Registration Success")
-        console.log("Registration Success") 
-       send();
+  
+    try {
+      const response = await axios.post("http://localhost:5000/register", user);
+  
+      if (response.data.message === "user registered sucessfully") {
+        // Registration was successful
+        setAlert({
+          type: "success",
+          message: "Registration Success",
+        });
+        send(); // Navigate to the login page
+      } else if (response.data.error === "Email exists") {
+        // Email already exists
+        setAlert({
+          type: "error",
+          message: "Email already exists",
+        });
+      } else if (response.data.error === "Passwords do not match") {
+        // Passwords do not match
+        setAlert({
+          type: "error",
+          message: "Passwords do not match",
+        });
       }
-      else if(res.data.message === "Email exists"){
-        window.alert("Email already exists")
-      }
-      else if(res.data.error === "Passwords do not match"){
-        window.alert("Passwords dont match")
-      }
-      
-  })
-    .catch((err)=>{
-      console.log(err)
-    })
-    
+    } catch (err) {
+      console.error(err);
+      setAlert({
+        type: "error",
+        message: "Internal server error",
+      });
+    }
   };
+  
   const backgroundImageUrl =
     "https://plus.unsplash.com/premium_photo-1668473365978-5f29069b0c6e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80";
   const style = {
@@ -87,6 +88,12 @@ export default function Signup() {
         <h1 className="text-3xl tracking-wider text-center  font-serif text-violet-950 ">
               PLACIFY
             </h1>
+            {alert.type === "success" && (
+            <div className="alert alert-success">{alert.message}</div>
+          )}
+          {alert.type === "error" && (
+            <div className="alert alert-error">{alert.message}</div>
+          )}
           <form method="POST" className="mt-12">
             <div className="mb-4">
               

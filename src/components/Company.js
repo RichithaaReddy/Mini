@@ -52,12 +52,9 @@ const Company = () => {
                   Test patterns
                 </Link>
                
-                <Link
-                  className="px-6 py-3 cursor-pointer font-semibold hover:text-violet-700 hover:text-xl ease-in-out duration-300"
-                  
-                >
-                  <a onClick={logout}>Logout</a>
-                </Link>
+                
+                  <a className="px-6 py-3 cursor-pointer font-semibold hover:text-violet-700 hover:text-xl ease-in-out duration-300" onClick={logout}>Logout</a>
+              
               </div>
             </div>
           </div>
